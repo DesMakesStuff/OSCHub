@@ -46,7 +46,7 @@ public class Server
 	public static void SendMessageToApps(OscMessage message)
 	{
 			
-			//var sender = new SharpOSC.UDPSender("127.0.0.1", 9000);
+			
 			foreach(AppObject App in Form1.AppsObjectList)
             {
 				var sender = new SharpOSC.UDPSender(App.IP, Int32.Parse(App.Port));
@@ -72,8 +72,8 @@ public class Server
 			
 			try
 			{
-				Console.WriteLine("Received a message!"+ messageReceived.Address);
-				Console.WriteLine("Received a message!"+ messageReceived.Arguments[0]);
+				Console.WriteLine("Received a message!"+ messageReceived.Address +""+ messageReceived.Arguments[0]);
+				
 			}
 			catch (NullReferenceException e)
             {

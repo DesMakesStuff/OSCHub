@@ -9,11 +9,6 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Text.Json;
 using System.Net.Sockets;
-/*Lets write some JSON parsing and config for this. Then slowly add in the communication portion.
- * 
- * 
- * 
- */
 
 namespace OSCHub
 {
@@ -27,13 +22,28 @@ namespace OSCHub
         bool isrun = false;
         public static Thread serverThread;
         public static CancellationTokenSource ct = new CancellationTokenSource();
+       
 
+        public void UpdateAvatar(String ID)
+        {
+            Console.WriteLine("Event called");
+            
+
+            Label_ID.BeginInvoke((MethodInvoker)delegate ()
+            {
+                Label_ID.Text = ID;
+            });
+        }
+
+       
 
         public Form1()
         {
-           
-            
-            
+
+
+
+            Server.IDUpdated += UpdateAvatar;
+
             InitializeComponent();
             bs.DataSource = AppsList;
 
@@ -84,6 +94,9 @@ namespace OSCHub
         {
             if(isrun == false)
             {
+                //Start
+                Label_SvrStatus.Text = "Online";
+                Label_SvrStatus.Font = new Font(Label_SvrStatus.Font, FontStyle.Bold);
                 btnStart.Text = "STOP";
                 btnStart.BackColor = System.Drawing.Color.Red;
                 btnStart.FlatStyle = FlatStyle.Flat;
@@ -96,6 +109,10 @@ namespace OSCHub
             }
             else
             {
+                //Stop
+
+                Label_SvrStatus.Text = "Offline";
+                Label_SvrStatus.Font = new Font(Label_SvrStatus.Font, FontStyle.Regular);
                 btnStart.Text = "START";
                 btnStart.BackColor = System.Drawing.Color.Green;
                 btnStart.FlatStyle = FlatStyle.Flat;
@@ -224,7 +241,30 @@ namespace OSCHub
             System.IO.File.WriteAllText(Application.StartupPath +"Config.json",jsonOut);
         }
 
-        
+        private void label8_Click(object sender, EventArgs e)
+        {
+          
+        }
+        public Label Label8
+        {
+            get { return Label_ID; }
+        }
+        public string LabelText
+        {
+            get
+            {
+                return this.Label_ID.Text;
+            }
+            set
+            {
+                this.Label_ID.Text = value;
+            }
+        }
+
+        private void LblAvatarInfo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class AppObject

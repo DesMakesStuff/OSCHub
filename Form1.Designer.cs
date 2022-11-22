@@ -29,6 +29,7 @@ namespace OSCHub
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -55,24 +56,22 @@ namespace OSCHub
             this.btnStart = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.ServerLabel = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.Label_SvrStatus = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.LblAvatarParams = new System.Windows.Forms.Label();
+            this.Label_ID = new System.Windows.Forms.Label();
             this.LblAvatarName = new System.Windows.Forms.Label();
             this.LblAvatarInfo = new System.Windows.Forms.Label();
             this.btnRemoveApp = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -191,9 +190,9 @@ namespace OSCHub
             this.panel5.Controls.Add(this.LblAppAddress);
             this.panel5.Controls.Add(this.LblAppName);
             this.panel5.Controls.Add(this.LblAppPort);
-            this.panel5.Location = new System.Drawing.Point(534, 54);
+            this.panel5.Location = new System.Drawing.Point(606, 54);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(405, 225);
+            this.panel5.Size = new System.Drawing.Size(333, 225);
             this.panel5.TabIndex = 9;
             // 
             // btnAddApp
@@ -295,7 +294,7 @@ namespace OSCHub
             this.panel6.Controls.Add(this.AppTextBox);
             this.panel6.Location = new System.Drawing.Point(205, 346);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(273, 219);
+            this.panel6.Size = new System.Drawing.Size(342, 219);
             this.panel6.TabIndex = 10;
             // 
             // lAppsBox
@@ -307,7 +306,7 @@ namespace OSCHub
             this.lAppsBox.ItemHeight = 25;
             this.lAppsBox.Location = new System.Drawing.Point(30, 0);
             this.lAppsBox.Name = "lAppsBox";
-            this.lAppsBox.Size = new System.Drawing.Size(234, 204);
+            this.lAppsBox.Size = new System.Drawing.Size(309, 204);
             this.lAppsBox.TabIndex = 1;
             this.lAppsBox.SelectedIndexChanged += new System.EventHandler(this.lAppsBox_SelectedIndexChanged);
             // 
@@ -338,17 +337,17 @@ namespace OSCHub
             // 
             // btnStart
             // 
-            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.btnStart.BackColor = System.Drawing.Color.Lime;
             this.btnStart.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
             this.btnStart.FlatAppearance.BorderSize = 4;
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnStart.ForeColor = System.Drawing.Color.Black;
-            this.btnStart.Location = new System.Drawing.Point(738, 515);
+            this.btnStart.Location = new System.Drawing.Point(782, 497);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(123, 50);
             this.btnStart.TabIndex = 11;
-            this.btnStart.Text = "Start";
+            this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -357,7 +356,7 @@ namespace OSCHub
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label5.Location = new System.Drawing.Point(5, 103);
+            this.label5.Location = new System.Drawing.Point(0, 177);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 25);
             this.label5.TabIndex = 6;
@@ -369,96 +368,66 @@ namespace OSCHub
             this.ServerLabel.AutoSize = true;
             this.ServerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ServerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.ServerLabel.Location = new System.Drawing.Point(3, 23);
+            this.ServerLabel.Location = new System.Drawing.Point(0, 122);
             this.ServerLabel.Name = "ServerLabel";
             this.ServerLabel.Size = new System.Drawing.Size(81, 25);
             this.ServerLabel.TabIndex = 4;
             this.ServerLabel.Text = "Server";
             // 
-            // label6
+            // Label_SvrStatus
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label6.Location = new System.Drawing.Point(49, 145);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 20);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Offline";
+            this.Label_SvrStatus.AutoSize = true;
+            this.Label_SvrStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Label_SvrStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.Label_SvrStatus.Location = new System.Drawing.Point(106, 182);
+            this.Label_SvrStatus.Name = "Label_SvrStatus";
+            this.Label_SvrStatus.Size = new System.Drawing.Size(55, 20);
+            this.Label_SvrStatus.TabIndex = 7;
+            this.Label_SvrStatus.Text = "Offline";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label4.Location = new System.Drawing.Point(49, 72);
+            this.label4.Location = new System.Drawing.Point(0, 150);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(129, 20);
             this.label4.TabIndex = 5;
             this.label4.Text = "127.0.0.1:9000";
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.ServerLabel);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Location = new System.Drawing.Point(666, 311);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(266, 178);
-            this.panel4.TabIndex = 8;
-            // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.label9);
-            this.panel7.Controls.Add(this.label8);
-            this.panel7.Controls.Add(this.LblAvatarParams);
+            this.panel7.Controls.Add(this.Label_SvrStatus);
+            this.panel7.Controls.Add(this.label4);
+            this.panel7.Controls.Add(this.label5);
+            this.panel7.Controls.Add(this.Label_ID);
             this.panel7.Controls.Add(this.LblAvatarName);
+            this.panel7.Controls.Add(this.ServerLabel);
             this.panel7.Controls.Add(this.LblAvatarInfo);
             this.panel7.Location = new System.Drawing.Point(188, 54);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(338, 225);
+            this.panel7.Size = new System.Drawing.Size(410, 225);
             this.panel7.TabIndex = 11;
             // 
-            // label9
+            // Label_ID
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label9.Location = new System.Drawing.Point(17, 176);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(55, 20);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Offline";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label8.Location = new System.Drawing.Point(17, 90);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 20);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Offline";
-            // 
-            // LblAvatarParams
-            // 
-            this.LblAvatarParams.AutoSize = true;
-            this.LblAvatarParams.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LblAvatarParams.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.LblAvatarParams.Location = new System.Drawing.Point(3, 139);
-            this.LblAvatarParams.Name = "LblAvatarParams";
-            this.LblAvatarParams.Size = new System.Drawing.Size(192, 25);
-            this.LblAvatarParams.TabIndex = 15;
-            this.LblAvatarParams.Text = "Total Parameters";
+            this.Label_ID.AutoSize = true;
+            this.Label_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Label_ID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.Label_ID.Location = new System.Drawing.Point(0, 90);
+            this.Label_ID.Name = "Label_ID";
+            this.Label_ID.Size = new System.Drawing.Size(55, 20);
+            this.Label_ID.TabIndex = 8;
+            this.Label_ID.Text = "Offline";
+            this.Label_ID.Click += new System.EventHandler(this.label8_Click);
             // 
             // LblAvatarName
             // 
             this.LblAvatarName.AutoSize = true;
             this.LblAvatarName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LblAvatarName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.LblAvatarName.Location = new System.Drawing.Point(3, 55);
+            this.LblAvatarName.Location = new System.Drawing.Point(0, 54);
             this.LblAvatarName.Name = "LblAvatarName";
             this.LblAvatarName.Size = new System.Drawing.Size(109, 25);
             this.LblAvatarName.TabIndex = 14;
@@ -470,11 +439,12 @@ namespace OSCHub
             this.LblAvatarInfo.AutoSize = true;
             this.LblAvatarInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LblAvatarInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.LblAvatarInfo.Location = new System.Drawing.Point(79, 6);
+            this.LblAvatarInfo.Location = new System.Drawing.Point(124, 6);
             this.LblAvatarInfo.Name = "LblAvatarInfo";
             this.LblAvatarInfo.Size = new System.Drawing.Size(126, 25);
             this.LblAvatarInfo.TabIndex = 14;
             this.LblAvatarInfo.Text = "Avatar Info";
+            this.LblAvatarInfo.Click += new System.EventHandler(this.LblAvatarInfo_Click);
             // 
             // btnRemoveApp
             // 
@@ -484,7 +454,7 @@ namespace OSCHub
             this.btnRemoveApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnRemoveApp.ForeColor = System.Drawing.Color.Black;
-            this.btnRemoveApp.Location = new System.Drawing.Point(475, 383);
+            this.btnRemoveApp.Location = new System.Drawing.Point(553, 374);
             this.btnRemoveApp.Name = "btnRemoveApp";
             this.btnRemoveApp.Size = new System.Drawing.Size(29, 32);
             this.btnRemoveApp.TabIndex = 14;
@@ -500,7 +470,7 @@ namespace OSCHub
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSave.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Location = new System.Drawing.Point(475, 515);
+            this.btnSave.Location = new System.Drawing.Point(553, 515);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 32);
             this.btnSave.TabIndex = 15;
@@ -521,7 +491,6 @@ namespace OSCHub
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
@@ -538,10 +507,9 @@ namespace OSCHub
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -566,9 +534,8 @@ namespace OSCHub
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label ServerLabel;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label Label_SvrStatus;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox txtPort;
         private System.Windows.Forms.TextBox txtIP;
         private System.Windows.Forms.TextBox txtName;
@@ -576,15 +543,14 @@ namespace OSCHub
         private System.Windows.Forms.Button btnAddApp;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label LblAvatarParams;
         private System.Windows.Forms.Label LblAvatarName;
-        private System.Windows.Forms.Label LblAvatarInfo;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label Label_ID;
         private System.Windows.Forms.TextBox AppTextBox;
         private System.Windows.Forms.ListBox lAppsBox;
         private System.Windows.Forms.Button btnRemoveApp;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.Label LblAvatarInfo;
     }
 }
 

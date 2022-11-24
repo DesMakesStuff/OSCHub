@@ -1,0 +1,10 @@
+bin
+obj
+.vs
+*.suo
+*.lnk
+*.exe
+*.user
+*.settings
+/packages
+Thumbs.db

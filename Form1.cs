@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Text.Json;
 using System.Net.Sockets;
+using SharpOSC;
 
 namespace OSCHub
 {
@@ -17,50 +18,102 @@ namespace OSCHub
     {
         public static List<String> AppsList = new List<String>();
         public static List<AppObject> AppsObjectList = new List<AppObject>();
-        BindingSource bs = new BindingSource();
+        public static List<String> ParamList = new List<String>();
+        BindingSource bsApps = new BindingSource();
+        public static BindingSource bsParams = new BindingSource();
         public int listIndex = 0;
+        public int listIndexParam = 0;
         bool isrun = false;
+        public static bool isdebug = false;
         public static Thread serverThread;
         public static CancellationTokenSource ct = new CancellationTokenSource();
-       
+        public static List<OscMessage> parameter_list = new List<OscMessage>();
 
-        public void UpdateAvatar(String ID)
+
+        public Label Label8
         {
-            Console.WriteLine("Event called");
-            
-
-            Label_ID.BeginInvoke((MethodInvoker)delegate ()
+            get { return Label_ID; }
+        }
+        public string LabelText
+        {
+            get
             {
-                Label_ID.Text = ID;
-            });
+                return this.Label_ID.Text;
+            }
+            set
+            {
+                this.Label_ID.Text = value;
+            }
         }
 
-       
+        public string setAddress
+        {
+            get
+            {
+                return this.label_oscaddress.Text;
+            }
+            set
+            {
+                this.label_oscaddress.Text = value;
+            }
+        }
+
+
+        public string setValue
+        {
+            get
+            {
+                return this.label_oscvalue.Text;
+            }
+            set
+            {
+                this.label_oscvalue.Text = value;
+            }
+        }
+
+
+
+        public void UpdateUI(String op,String ID)
+        {
+            Console.WriteLine("Event called");
+
+
+            if (op == "av_id")
+            {
+                Label_ID.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    Label_ID.Text = ID;
+                });
+            }
+            
+        }
+
+      
 
         public Form1()
         {
 
 
 
-            Server.IDUpdated += UpdateAvatar;
+            Server.IDUpdated += UpdateUI;
 
             InitializeComponent();
-            bs.DataSource = AppsList;
+            bsApps.DataSource = AppsList;
+            bsParams.DataSource = ParamList;
 
             //Check for a config file and load it, populating the Apps and AppsObject lists
             if(System.IO.File.Exists(Application.StartupPath + "Config.json"))
             {
                 string file = System.IO.File.ReadAllText(Application.StartupPath +"Config.Json");
-                //AppsObjectList = JsonSerializer.Deserialize<AppObject>(file);
                 AppsObjectList = Newtonsoft.Json.JsonConvert.DeserializeObject <List<AppObject>>(file);
                 for(int i = 0; i<AppsObjectList.Count;i++)
                 {
                     AppsList.Add(AppsObjectList[i].Name);
                 }
                 lblConnectedApps.Text = "Connected Apps: " + AppsList.Count;
-                lAppsBox.DataSource = bs;
+                lAppsBox.DataSource = bsApps;
 
-                bs.ResetBindings(false); //Reset bindings to show 
+                bsApps.ResetBindings(false); //Reset bindings to show 
             }
             
         }
@@ -150,9 +203,9 @@ namespace OSCHub
                                 
                 AppsObjectList.Add(Current);
                 AppsList.Add(Current.Name.ToString());
-                lAppsBox.DataSource = bs;
+                lAppsBox.DataSource = bsApps;
                 
-                bs.ResetBindings(false);
+                bsApps.ResetBindings(false);
                 lblConnectedApps.Text = "Connected Apps: " + AppsList.Count;
                 //Figure out converting objects to strings and displaying on change
             }
@@ -228,7 +281,7 @@ namespace OSCHub
             AppsList.RemoveAt(listIndex);
             AppsObjectList.RemoveAt(listIndex);
             lblConnectedApps.Text = "Connected Apps: " + AppsList.Count;
-            bs.ResetBindings(false);
+            bsApps.ResetBindings(false);
 
         }
 
@@ -245,25 +298,62 @@ namespace OSCHub
         {
           
         }
-        public Label Label8
-        {
-            get { return Label_ID; }
-        }
-        public string LabelText
-        {
-            get
-            {
-                return this.Label_ID.Text;
-            }
-            set
-            {
-                this.Label_ID.Text = value;
-            }
-        }
-
+       
         private void LblAvatarInfo_Click(object sender, EventArgs e)
         {
 
+        }
+
+        
+        //Home FIX THIS
+        private void btnParamDebug_Click(object sender, EventArgs e)
+        {
+            panel_param.Hide();
+            isdebug = false;
+        }
+
+        //Parameter Debug
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panel_param.Show();
+            isdebug = true;
+            
+            
+
+            //Make sure we reset the bindings
+            
+           
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listbox_param.SelectedIndex >= 0)
+            {
+
+
+                listIndexParam = listbox_param.SelectedIndex;
+
+                //Set Address and Value to selected Parameter
+                label_oscaddress.Text = parameter_list[listIndexParam].Address;
+                label_oscvalue.Text = parameter_list[listIndexParam].Arguments[0].ToString();
+            }
+        }
+
+        private void RefreshParam_Click(object sender, EventArgs e)
+        {
+            
+            listbox_param.DataSource = bsParams;
+            bsParams.ResetBindings(true);
         }
     }
 

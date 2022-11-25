@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using System.Runtime.InteropServices;
+
 namespace OSCHub
 {
     //Check out https://stackoverflow.com/questions/20821143/how-do-add-image-to-system-windows-forms-listbox
@@ -19,9 +20,6 @@ namespace OSCHub
         [STAThread]
         static void Main()
         {
-
-
-
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -29,9 +27,4 @@ namespace OSCHub
 
         }
     }
-        
-      
-         
 }
-
-

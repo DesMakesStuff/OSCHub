@@ -73,7 +73,6 @@ namespace OSCHub
             this.label6 = new System.Windows.Forms.Label();
             this.listbox_param = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.RefreshParam = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -491,7 +490,6 @@ namespace OSCHub
             // 
             // panel_param
             // 
-            this.panel_param.Controls.Add(this.RefreshParam);
             this.panel_param.Controls.Add(this.label_oscaddress);
             this.panel_param.Controls.Add(this.label_oscvalue);
             this.panel_param.Controls.Add(this.label9);
@@ -580,20 +578,10 @@ namespace OSCHub
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
             this.label2.Location = new System.Drawing.Point(88, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(225, 32);
+            this.label2.Size = new System.Drawing.Size(235, 32);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Detected Parameter";
+            this.label2.Text = "Detected Parameters";
             this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // RefreshParam
-            // 
-            this.RefreshParam.Location = new System.Drawing.Point(420, 286);
-            this.RefreshParam.Name = "RefreshParam";
-            this.RefreshParam.Size = new System.Drawing.Size(173, 23);
-            this.RefreshParam.TabIndex = 7;
-            this.RefreshParam.Text = "RefreshParam";
-            this.RefreshParam.UseVisualStyleBackColor = true;
-            this.RefreshParam.Click += new System.EventHandler(this.RefreshParam_Click);
             // 
             // Form1
             // 
@@ -679,7 +667,6 @@ namespace OSCHub
         private System.Windows.Forms.Label label_oscvalue;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button RefreshParam;
     }
 }
 

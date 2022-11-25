@@ -22,12 +22,26 @@ namespace OSCHub
         BindingSource bsApps = new BindingSource();
         public static BindingSource bsParams = new BindingSource();
         public int listIndex = 0;
-        public int listIndexParam = 0;
+        public static int listIndexParam = 0;
         bool isrun = false;
         public static bool isdebug = false;
         public static Thread serverThread;
         public static CancellationTokenSource ct = new CancellationTokenSource();
         public static List<OscMessage> parameter_list = new List<OscMessage>();
+
+        //Window dragging winapi voodoo
+        private const int WM_NCHITTEST = 0x84;
+        private const int HTCLIENT = 0x1;
+        private const int HTCAPTION = 0x2;
+
+        //Window dragging winapi voodoo
+        protected override void WndProc(ref Message message)
+        {
+            base.WndProc(ref message);
+
+            if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
+                message.Result = (IntPtr)HTCAPTION;
+        }
 
         public void DebugRefresh()
         {

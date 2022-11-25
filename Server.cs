@@ -62,6 +62,12 @@ public class Server
                     avi_ID = messageReceived.Arguments[0].ToString();
                     Console.WriteLine("New Avatar ID: " + messageReceived.Arguments[0]);
                     previousPacket = messageReceived;
+
+                    //New Avatar Reset Listbox
+                    Form1.parameter_list.Clear();
+                    Form1.ParamList.Clear();
+                    Form1.listIndexParam = 0;
+
                     OnUpdateID("av_id",avi_ID);
                 }
                 //IF debugging begin checking and adding to list
@@ -75,7 +81,6 @@ public class Server
                         {
                             Form1.parameter_list[i].Arguments[0] = messageReceived.Arguments[0];
                            
-
                             isfound = true;
                         }
                        

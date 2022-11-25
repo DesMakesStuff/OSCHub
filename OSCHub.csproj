@@ -9,18 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Bespoke.Common">
-      <HintPath>..\bespoke.osc\Bespoke.Osc\bin\Release\netstandard2.0\Bespoke.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Bespoke.Osc">
-      <HintPath>..\bespoke.osc\Bespoke.Osc\bin\Release\netstandard2.0\Bespoke.Osc.dll</HintPath>
-    </Reference>
     <Reference Include="SharpOSC">
-      <HintPath>..\PiTouchSharp\bin\SharpOSC.dll</HintPath>
+      <HintPath>Libraries\SharpOSC\Debug\SharpOSC.dll</HintPath>
     </Reference>
   </ItemGroup>
 

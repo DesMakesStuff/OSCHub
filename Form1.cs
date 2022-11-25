@@ -29,10 +29,42 @@ namespace OSCHub
         public static CancellationTokenSource ct = new CancellationTokenSource();
         public static List<OscMessage> parameter_list = new List<OscMessage>();
 
+        public void DebugRefresh()
+        {
+            while (isdebug == true)
+            {
+                if (parameter_list.Count > 0)
+                {
+                    label_oscaddress.BeginInvoke((MethodInvoker)delegate ()
+                    {
+                        label_oscaddress.Text = parameter_list[listIndexParam].Address;
+                    });
 
+
+                    label_oscvalue.BeginInvoke((MethodInvoker)delegate ()
+                    {
+                        label_oscvalue.Text = parameter_list[listIndexParam].Arguments[0].ToString();
+                    });
+
+
+                    listbox_param.BeginInvoke((MethodInvoker)delegate ()
+                    {
+                        listbox_param.DataSource = bsParams;
+                        bsParams.ResetBindings(false);
+                    });
+                    Thread.Sleep(2000);
+                }
+            }
+            
+        }
         public Label Label8
         {
             get { return Label_ID; }
+        }
+
+        public ListBox parambox
+        {
+            get { return this.listbox_param; }
         }
         public string LabelText
         {
@@ -85,6 +117,7 @@ namespace OSCHub
                     Label_ID.Text = ID;
                 });
             }
+         
             
         }
 
@@ -317,12 +350,16 @@ namespace OSCHub
         {
             panel_param.Show();
             isdebug = true;
-            
-            
+
+            Thread refreshThread = new Thread(new ThreadStart(DebugRefresh));
+            refreshThread.Start();
+
+
+
 
             //Make sure we reset the bindings
-            
-           
+
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -343,15 +380,13 @@ namespace OSCHub
 
                 listIndexParam = listbox_param.SelectedIndex;
 
-                //Set Address and Value to selected Parameter
-                label_oscaddress.Text = parameter_list[listIndexParam].Address;
-                label_oscvalue.Text = parameter_list[listIndexParam].Arguments[0].ToString();
+                
             }
         }
 
         private void RefreshParam_Click(object sender, EventArgs e)
         {
-            
+            //Refresh Parameters
             listbox_param.DataSource = bsParams;
             bsParams.ResetBindings(true);
         }

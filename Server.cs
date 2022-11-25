@@ -74,8 +74,8 @@ public class Server
                         if(messageReceived.Address == Form1.parameter_list[i].Address)
                         {
                             Form1.parameter_list[i].Arguments[0] = messageReceived.Arguments[0];
-                            
-                            Form1.bsParams.ResetBindings(false);
+                           
+
                             isfound = true;
                         }
                        
@@ -85,7 +85,9 @@ public class Server
                     {
                         Form1.parameter_list.Add(messageReceived);
                         Form1.ParamList.Add(messageReceived.Address);
-                        Form1.bsParams.ResetBindings(false);
+                      
+                        
+                        
                     }
 
                 }

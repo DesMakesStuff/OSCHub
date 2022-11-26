@@ -67,7 +67,7 @@ public class Server
                     Form1.ParamList.Clear();
                     Form1.listIndexParam = 0;
 
-                    OnUpdateID("av_id");
+                    OnUpdateID(messageReceived.Arguments[0].ToString());
                 }
                 //If debugging, begin checking and adding to list
                 if (Form1.isdebug == true)

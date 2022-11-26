@@ -32,10 +32,20 @@ namespace OSCHub
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ErrorText = new System.Windows.Forms.RichTextBox();
             this.btnParam = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel_param = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label_oscaddress = new System.Windows.Forms.Label();
+            this.label_oscvalue = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.listbox_param = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -62,31 +72,23 @@ namespace OSCHub
             this.Label_ID = new System.Windows.Forms.Label();
             this.LblAvatarName = new System.Windows.Forms.Label();
             this.LblAvatarInfo = new System.Windows.Forms.Label();
-            this.panel_param = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label_oscaddress = new System.Windows.Forms.Label();
-            this.label_oscvalue = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.listbox_param = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnRemoveApp = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel_param.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.panel_param.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.panel1.Controls.Add(this.ErrorText);
             this.panel1.Controls.Add(this.btnParam);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.btnDashboard);
@@ -96,6 +98,19 @@ namespace OSCHub
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(187, 577);
             this.panel1.TabIndex = 0;
+            // 
+            // ErrorText
+            // 
+            this.ErrorText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.ErrorText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ErrorText.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ErrorText.ForeColor = System.Drawing.Color.Red;
+            this.ErrorText.Location = new System.Drawing.Point(36, 229);
+            this.ErrorText.Name = "ErrorText";
+            this.ErrorText.Size = new System.Drawing.Size(121, 111);
+            this.ErrorText.TabIndex = 5;
+            this.ErrorText.Text = "Please start the server before\n entering debug mode!";
+            this.ErrorText.Visible = false;
             // 
             // btnParam
             // 
@@ -143,6 +158,115 @@ namespace OSCHub
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(187, 144);
             this.panel2.TabIndex = 0;
+            // 
+            // panel_param
+            // 
+            this.panel_param.Controls.Add(this.button1);
+            this.panel_param.Controls.Add(this.label_oscaddress);
+            this.panel_param.Controls.Add(this.label_oscvalue);
+            this.panel_param.Controls.Add(this.label9);
+            this.panel_param.Controls.Add(this.label8);
+            this.panel_param.Controls.Add(this.label6);
+            this.panel_param.Controls.Add(this.listbox_param);
+            this.panel_param.Controls.Add(this.label2);
+            this.panel_param.Location = new System.Drawing.Point(188, 0);
+            this.panel_param.Name = "panel_param";
+            this.panel_param.Size = new System.Drawing.Size(761, 568);
+            this.panel_param.TabIndex = 16;
+            this.panel_param.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(733, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 25);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "X";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // label_oscaddress
+            // 
+            this.label_oscaddress.AutoSize = true;
+            this.label_oscaddress.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_oscaddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.label_oscaddress.Location = new System.Drawing.Point(496, 100);
+            this.label_oscaddress.Name = "label_oscaddress";
+            this.label_oscaddress.Size = new System.Drawing.Size(56, 17);
+            this.label_oscaddress.TabIndex = 6;
+            this.label_oscaddress.Text = "Address";
+            // 
+            // label_oscvalue
+            // 
+            this.label_oscvalue.AutoSize = true;
+            this.label_oscvalue.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_oscvalue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.label_oscvalue.Location = new System.Drawing.Point(496, 157);
+            this.label_oscvalue.Name = "label_oscvalue";
+            this.label_oscvalue.Size = new System.Drawing.Size(39, 17);
+            this.label_oscvalue.TabIndex = 5;
+            this.label_oscvalue.Text = "Value";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.label9.Location = new System.Drawing.Point(435, 157);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 17);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Value:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.label8.Location = new System.Drawing.Point(435, 101);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(61, 17);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Address:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.label6.Location = new System.Drawing.Point(530, 46);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 32);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Details";
+            // 
+            // listbox_param
+            // 
+            this.listbox_param.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.listbox_param.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.listbox_param.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.listbox_param.FormattingEnabled = true;
+            this.listbox_param.ItemHeight = 16;
+            this.listbox_param.Location = new System.Drawing.Point(21, 46);
+            this.listbox_param.Name = "listbox_param";
+            this.listbox_param.Size = new System.Drawing.Size(392, 516);
+            this.listbox_param.TabIndex = 1;
+            this.listbox_param.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.label2.Location = new System.Drawing.Point(88, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(235, 32);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Detected Parameters";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -457,115 +581,6 @@ namespace OSCHub
             this.LblAvatarInfo.Text = "Avatar Info";
             this.LblAvatarInfo.Click += new System.EventHandler(this.LblAvatarInfo_Click);
             // 
-            // panel_param
-            // 
-            this.panel_param.Controls.Add(this.button1);
-            this.panel_param.Controls.Add(this.label_oscaddress);
-            this.panel_param.Controls.Add(this.label_oscvalue);
-            this.panel_param.Controls.Add(this.label9);
-            this.panel_param.Controls.Add(this.label8);
-            this.panel_param.Controls.Add(this.label6);
-            this.panel_param.Controls.Add(this.listbox_param);
-            this.panel_param.Controls.Add(this.label2);
-            this.panel_param.Location = new System.Drawing.Point(188, 0);
-            this.panel_param.Name = "panel_param";
-            this.panel_param.Size = new System.Drawing.Size(761, 568);
-            this.panel_param.TabIndex = 16;
-            this.panel_param.Visible = false;
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(733, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 25);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // label_oscaddress
-            // 
-            this.label_oscaddress.AutoSize = true;
-            this.label_oscaddress.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_oscaddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label_oscaddress.Location = new System.Drawing.Point(496, 100);
-            this.label_oscaddress.Name = "label_oscaddress";
-            this.label_oscaddress.Size = new System.Drawing.Size(56, 17);
-            this.label_oscaddress.TabIndex = 6;
-            this.label_oscaddress.Text = "Address";
-            // 
-            // label_oscvalue
-            // 
-            this.label_oscvalue.AutoSize = true;
-            this.label_oscvalue.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_oscvalue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label_oscvalue.Location = new System.Drawing.Point(496, 157);
-            this.label_oscvalue.Name = "label_oscvalue";
-            this.label_oscvalue.Size = new System.Drawing.Size(39, 17);
-            this.label_oscvalue.TabIndex = 5;
-            this.label_oscvalue.Text = "Value";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label9.Location = new System.Drawing.Point(435, 157);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 17);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Value:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label8.Location = new System.Drawing.Point(435, 101);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 17);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Address:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label6.Location = new System.Drawing.Point(530, 46);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 32);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Details";
-            // 
-            // listbox_param
-            // 
-            this.listbox_param.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.listbox_param.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.listbox_param.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.listbox_param.FormattingEnabled = true;
-            this.listbox_param.ItemHeight = 16;
-            this.listbox_param.Location = new System.Drawing.Point(21, 46);
-            this.listbox_param.Name = "listbox_param";
-            this.listbox_param.Size = new System.Drawing.Size(392, 516);
-            this.listbox_param.TabIndex = 1;
-            this.listbox_param.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label2.Location = new System.Drawing.Point(88, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(235, 32);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Detected Parameters";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
             // btnRemoveApp
             // 
             this.btnRemoveApp.AutoSize = true;
@@ -623,6 +638,8 @@ namespace OSCHub
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel_param.ResumeLayout(false);
+            this.panel_param.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -630,8 +647,6 @@ namespace OSCHub
             this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.panel_param.ResumeLayout(false);
-            this.panel_param.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -683,6 +698,7 @@ namespace OSCHub
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox ErrorText;
     }
 }
 

@@ -15,7 +15,7 @@ namespace OSCHub
 {
     public partial class Form1 : Form
     {
-        //There has to be a better way eww
+        //Fix this eventually
         public static List<String> AppsList = new List<String>();
         public static List<AppObject> AppsObjectList = new List<AppObject>();
         public static List<String> ParamList = new List<String>();
@@ -154,7 +154,7 @@ namespace OSCHub
                 lblConnectedApps.Text = "Connected Apps: " + AppsList.Count;
                 lAppsBox.DataSource = bsApps;
 
-                bsApps.ResetBindings(false); //Reset bindings to show 
+                bsApps.ResetBindings(false); //Reset bindings to update
             }
 
         }
@@ -355,13 +355,21 @@ namespace OSCHub
         //Parameter Debug
         private void btnDebug_Click(object sender, EventArgs e)
         {
-            panel_param.Show();
-            isdebug = true;
 
-            Thread refreshThread = new Thread(new ThreadStart(DebugRefresh));
-            refreshThread.Start();
+            if (isrun == true)
+            {
+                ErrorText.Hide();
+                panel_param.Show();
+                isdebug = true;
 
-            //Make sure we reset the bindings
+                Thread refreshThread = new Thread(new ThreadStart(DebugRefresh));
+                refreshThread.Start();
+            }
+            else
+            {
+                ErrorText.Show();
+            }
+           
         }
 
         private void label2_Click(object sender, EventArgs e)

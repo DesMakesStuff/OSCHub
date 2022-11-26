@@ -37,6 +37,8 @@ namespace OSCHub
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel_param = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.label_oscaddress = new System.Windows.Forms.Label();
@@ -46,8 +48,6 @@ namespace OSCHub
             this.label6 = new System.Windows.Forms.Label();
             this.listbox_param = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Exit = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -73,12 +73,11 @@ namespace OSCHub
             this.LblAvatarName = new System.Windows.Forms.Label();
             this.LblAvatarInfo = new System.Windows.Forms.Label();
             this.btnRemoveApp = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel_param.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel_param.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -159,6 +158,29 @@ namespace OSCHub
             this.panel2.Size = new System.Drawing.Size(187, 144);
             this.panel2.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.label1.Location = new System.Drawing.Point(60, 101);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 16);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "OSC Hub";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(67, 22);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(63, 63);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // panel_param
             // 
             this.panel_param.Controls.Add(this.button1);
@@ -169,7 +191,7 @@ namespace OSCHub
             this.panel_param.Controls.Add(this.label6);
             this.panel_param.Controls.Add(this.listbox_param);
             this.panel_param.Controls.Add(this.label2);
-            this.panel_param.Location = new System.Drawing.Point(188, 0);
+            this.panel_param.Location = new System.Drawing.Point(21, 229);
             this.panel_param.Name = "panel_param";
             this.panel_param.Size = new System.Drawing.Size(761, 568);
             this.panel_param.TabIndex = 16;
@@ -268,29 +290,6 @@ namespace OSCHub
             this.label2.Text = "Detected Parameters";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.label1.Location = new System.Drawing.Point(60, 101);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "OSC Hub";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(67, 22);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(63, 63);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -359,7 +358,7 @@ namespace OSCHub
             // 
             // txtPort
             // 
-            this.txtPort.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtPort.BackColor = System.Drawing.SystemColors.ControlDark;
             this.txtPort.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPort.Location = new System.Drawing.Point(150, 153);
             this.txtPort.Name = "txtPort";
@@ -369,17 +368,18 @@ namespace OSCHub
             // 
             // txtIP
             // 
-            this.txtIP.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtIP.BackColor = System.Drawing.SystemColors.ControlDark;
             this.txtIP.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtIP.Location = new System.Drawing.Point(150, 108);
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(160, 16);
             this.txtIP.TabIndex = 9;
+            this.txtIP.Text = "127.0.0.1";
             this.txtIP.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // txtName
             // 
-            this.txtName.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtName.BackColor = System.Drawing.SystemColors.ControlDark;
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtName.Location = new System.Drawing.Point(150, 63);
             this.txtName.Name = "txtName";
@@ -394,9 +394,9 @@ namespace OSCHub
             this.LblAppAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
             this.LblAppAddress.Location = new System.Drawing.Point(-2, 104);
             this.LblAppAddress.Name = "LblAppAddress";
-            this.LblAppAddress.Size = new System.Drawing.Size(119, 25);
+            this.LblAppAddress.Size = new System.Drawing.Size(126, 25);
             this.LblAppAddress.TabIndex = 7;
-            this.LblAppAddress.Text = "IPAddress";
+            this.LblAppAddress.Text = "IP Address";
             this.LblAppAddress.Click += new System.EventHandler(this.LblAppAddress_Click);
             // 
             // LblAppName
@@ -533,6 +533,7 @@ namespace OSCHub
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.panel_param);
             this.panel7.Controls.Add(this.Label_SvrStatus);
             this.panel7.Controls.Add(this.label4);
             this.panel7.Controls.Add(this.label5);
@@ -597,30 +598,12 @@ namespace OSCHub
             this.btnRemoveApp.UseVisualStyleBackColor = false;
             this.btnRemoveApp.Click += new System.EventHandler(this.btnRemoveApp_Click);
             // 
-            // btnSave
-            // 
-            this.btnSave.AutoSize = true;
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Location = new System.Drawing.Point(553, 515);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(107, 32);
-            this.btnSave.TabIndex = 15;
-            this.btnSave.Text = "Save Apps";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(951, 577);
-            this.Controls.Add(this.panel_param);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRemoveApp);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.lblConnectedApps);
@@ -638,9 +621,9 @@ namespace OSCHub
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_param.ResumeLayout(false);
             this.panel_param.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -685,7 +668,6 @@ namespace OSCHub
         private System.Windows.Forms.TextBox AppTextBox;
         private System.Windows.Forms.ListBox lAppsBox;
         private System.Windows.Forms.Button btnRemoveApp;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Label LblAvatarInfo;
         private System.Windows.Forms.Panel panel_param;

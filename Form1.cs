@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Text.Json;
 using System.Net.Sockets;
+using System.Net;
 using SharpOSC;
 
 namespace OSCHub
@@ -45,6 +46,27 @@ namespace OSCHub
 
             if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
                 message.Result = (IntPtr)HTCAPTION;
+        }
+
+        public bool isDuplicateUsed(string pendingName,string pendingPort)
+        {
+            foreach (AppObject App in AppsObjectList)
+            {
+                if (App.Port == pendingPort)
+                {
+                    return true;
+                }
+                else if(App.Name == pendingName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public void SaveApps()
+        {
+            string jsonOut = JsonSerializer.Serialize(AppsObjectList);
+            System.IO.File.WriteAllText(Application.StartupPath + "Config.json", jsonOut);
         }
 
         public Label Label8
@@ -149,7 +171,7 @@ namespace OSCHub
                 AppsObjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<AppObject>>(file);
                 for (int i = 0; i < AppsObjectList.Count; i++)
                 {
-                    AppsList.Add(AppsObjectList[i].Name);
+                    AppsList.Add(AppsObjectList[i].Name + ":" + AppsObjectList[i].Port);
                 }
                 lblConnectedApps.Text = "Connected Apps: " + AppsList.Count;
                 lAppsBox.DataSource = bsApps;
@@ -174,7 +196,7 @@ namespace OSCHub
 
         }
 
-        //Exit button
+       
         private void btnClose_Click(object sender, EventArgs e)
         {
             if(InvokeRequired)
@@ -242,17 +264,31 @@ namespace OSCHub
 
         private void btnAddApp_Click(object sender, EventArgs e)
         {
+            IPAddress IP;
             if (!String.IsNullOrEmpty(txtName.Text) && !String.IsNullOrEmpty(txtIP.Text) && !String.IsNullOrEmpty(txtPort.Text))
             {
                 AppObject Current = new AppObject(AppsList.Count, txtName.Text, txtIP.Text, txtPort.Text);
 
-                AppsObjectList.Add(Current);
-                AppsList.Add(Current.Name.ToString());
-                lAppsBox.DataSource = bsApps;
+                if (isDuplicateUsed(Current.Name,Current.Port) == true)
+                {
+                    MessageBox.Show("The port or name: "+ Current.Name+":"+Current.Port+
+                        " is already in use, please use another port");
+                }
+                else if(IPAddress.TryParse(Current.IP,out IP)==false)
+                {
+                    MessageBox.Show("The IP Address: " + Current.IP + " is invalid please try another address");
+                }
+                else
+                {
+                    AppsObjectList.Add(Current);
+                    AppsList.Add(Current.Name.ToString()+":"+Current.Port.ToString());
+                    lAppsBox.DataSource = bsApps;
 
-                bsApps.ResetBindings(false);
-                lblConnectedApps.Text = "Connected Apps: " + AppsList.Count;
-                //Figure out converting objects to strings and displaying on change
+                    bsApps.ResetBindings(false);
+                    lblConnectedApps.Text = "Connected Apps: " + AppsList.Count;
+                    SaveApps();
+                    
+                }
             }
 
             else
@@ -325,16 +361,10 @@ namespace OSCHub
             AppsObjectList.RemoveAt(listIndex);
             lblConnectedApps.Text = "Connected Apps: " + AppsList.Count;
             bsApps.ResetBindings(false);
+            SaveApps();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Apps have been saved to Config.json");
-
-            string jsonOut = JsonSerializer.Serialize(AppsObjectList);
-            System.IO.File.WriteAllText(Application.StartupPath + "Config.json", jsonOut);
-        }
-
+    
         private void label8_Click(object sender, EventArgs e)
         {
 
@@ -345,14 +375,14 @@ namespace OSCHub
 
         }
 
-        //Home FIX THIS
+        
         private void btnHome_Click(object sender, EventArgs e)
         {
             panel_param.Hide();
             isdebug = false;
         }
 
-        //Parameter Debug
+      
         private void btnDebug_Click(object sender, EventArgs e)
         {
 

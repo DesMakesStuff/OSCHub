@@ -13,7 +13,6 @@ using SharpOSC;
 
 namespace OSCHub
 {
-   
     public partial class Form1 : Form
     {
         public static List<String> AppsList = new List<String>();
@@ -54,23 +53,22 @@ namespace OSCHub
                         label_oscaddress.Text = parameter_list[listIndexParam].Address;
                     });
 
-
                     label_oscvalue.BeginInvoke((MethodInvoker)delegate ()
                     {
                         label_oscvalue.Text = parameter_list[listIndexParam].Arguments[0].ToString();
                     });
-
 
                     listbox_param.BeginInvoke((MethodInvoker)delegate ()
                     {
                         listbox_param.DataSource = bsParams;
                         bsParams.ResetBindings(false);
                     });
+
                     Thread.Sleep(2000);
                 }
             }
-            
         }
+
         public Label Label8
         {
             get { return Label_ID; }
@@ -80,12 +78,14 @@ namespace OSCHub
         {
             get { return this.listbox_param; }
         }
+
         public string LabelText
         {
             get
             {
                 return this.Label_ID.Text;
             }
+
             set
             {
                 this.Label_ID.Text = value;
@@ -98,12 +98,12 @@ namespace OSCHub
             {
                 return this.label_oscaddress.Text;
             }
+
             set
             {
                 this.label_oscaddress.Text = value;
             }
         }
-
 
         public string setValue
         {
@@ -111,18 +111,16 @@ namespace OSCHub
             {
                 return this.label_oscvalue.Text;
             }
+
             set
             {
                 this.label_oscvalue.Text = value;
             }
         }
 
-
-
-        public void UpdateUI(String op,String ID)
+        public void UpdateUI(String op, String ID)
         {
             Console.WriteLine("Event called");
-
 
             if (op == "av_id")
             {
@@ -131,17 +129,10 @@ namespace OSCHub
                     Label_ID.Text = ID;
                 });
             }
-         
-            
         }
-
-      
 
         public Form1()
         {
-
-
-
             Server.IDUpdated += UpdateUI;
 
             InitializeComponent();
@@ -149,11 +140,11 @@ namespace OSCHub
             bsParams.DataSource = ParamList;
 
             //Check for a config file and load it, populating the Apps and AppsObject lists
-            if(System.IO.File.Exists(Application.StartupPath + "Config.json"))
+            if (System.IO.File.Exists(Application.StartupPath + "Config.json"))
             {
-                string file = System.IO.File.ReadAllText(Application.StartupPath +"Config.Json");
-                AppsObjectList = Newtonsoft.Json.JsonConvert.DeserializeObject <List<AppObject>>(file);
-                for(int i = 0; i<AppsObjectList.Count;i++)
+                string file = System.IO.File.ReadAllText(Application.StartupPath + "Config.Json");
+                AppsObjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<AppObject>>(file);
+                for (int i = 0; i < AppsObjectList.Count; i++)
                 {
                     AppsList.Add(AppsObjectList[i].Name);
                 }
@@ -162,7 +153,7 @@ namespace OSCHub
 
                 bsApps.ResetBindings(false); //Reset bindings to show 
             }
-            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -192,7 +183,7 @@ namespace OSCHub
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if(isrun == false)
+            if (isrun == false)
             {
                 //Start
                 Label_SvrStatus.Text = "Online";
@@ -202,11 +193,12 @@ namespace OSCHub
                 btnStart.FlatStyle = FlatStyle.Flat;
                 btnStart.FlatAppearance.BorderColor = Color.Red;
                 isrun = true;
-                
+
                 serverThread = new Thread(Server.StartServer);
-                
+
                 serverThread.Start(ct);
             }
+
             else
             {
                 //Stop
@@ -219,18 +211,13 @@ namespace OSCHub
                 btnStart.FlatAppearance.BorderColor = Color.Green;
                 isrun = false;
                 Server.listener.Close();
-                
-                
             }
-
-
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void LblAppPort_Click(object sender, EventArgs e)
         {
 
@@ -243,25 +230,23 @@ namespace OSCHub
 
         private void btnAddApp_Click(object sender, EventArgs e)
         {
-            
-            if(!String.IsNullOrEmpty(txtName.Text) && !String.IsNullOrEmpty(txtIP.Text) && !String.IsNullOrEmpty(txtPort.Text))
+            if (!String.IsNullOrEmpty(txtName.Text) && !String.IsNullOrEmpty(txtIP.Text) && !String.IsNullOrEmpty(txtPort.Text))
             {
-                AppObject Current = new AppObject(AppsList.Count ,txtName.Text, txtIP.Text, txtPort.Text);
-                                
+                AppObject Current = new AppObject(AppsList.Count, txtName.Text, txtIP.Text, txtPort.Text);
+
                 AppsObjectList.Add(Current);
                 AppsList.Add(Current.Name.ToString());
                 lAppsBox.DataSource = bsApps;
-                
+
                 bsApps.ResetBindings(false);
                 lblConnectedApps.Text = "Connected Apps: " + AppsList.Count;
                 //Figure out converting objects to strings and displaying on change
             }
+
             else
             {
                 MessageBox.Show("Please fill Name,IP, and port before adding!");
             }
-
-           
         }
 
         private void LblAppName_Click(object sender, EventArgs e)
@@ -291,12 +276,12 @@ namespace OSCHub
 
         private void AppTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
-        
+
         public void AppTextBox_Set(string text)
         {
-            
+
         }
 
         private void LiveParameterLabel_Click(object sender, EventArgs e)
@@ -318,7 +303,6 @@ namespace OSCHub
         {
             if (lAppsBox.SelectedIndex >= 0)
             {
-
                 listIndex = lAppsBox.SelectedIndex;
             }
         }
@@ -329,29 +313,26 @@ namespace OSCHub
             AppsObjectList.RemoveAt(listIndex);
             lblConnectedApps.Text = "Connected Apps: " + AppsList.Count;
             bsApps.ResetBindings(false);
-
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
             MessageBox.Show("Apps have been saved to Config.json");
-           
+
             string jsonOut = JsonSerializer.Serialize(AppsObjectList);
-            System.IO.File.WriteAllText(Application.StartupPath +"Config.json",jsonOut);
+            System.IO.File.WriteAllText(Application.StartupPath + "Config.json", jsonOut);
         }
 
         private void label8_Click(object sender, EventArgs e)
         {
-          
+
         }
-       
+
         private void LblAvatarInfo_Click(object sender, EventArgs e)
         {
 
         }
 
-        
         //Home FIX THIS
         private void btnParamDebug_Click(object sender, EventArgs e)
         {
@@ -368,12 +349,7 @@ namespace OSCHub
             Thread refreshThread = new Thread(new ThreadStart(DebugRefresh));
             refreshThread.Start();
 
-
-
-
             //Make sure we reset the bindings
-
-
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -390,11 +366,7 @@ namespace OSCHub
         {
             if (listbox_param.SelectedIndex >= 0)
             {
-
-
                 listIndexParam = listbox_param.SelectedIndex;
-
-                
             }
         }
 
@@ -410,10 +382,9 @@ namespace OSCHub
     {
         public int Index { get; set; }
         public string Name { get; set; }
-        public string IP{ get; set; } 
+        public string IP { get; set; }
         public string Port { get; set; }
-        
-        
+
         public AppObject(int Index, string Name, string IP, string Port)
         {
             this.Index = Index;

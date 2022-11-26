@@ -22,10 +22,11 @@ public class Server
     // Events
     public delegate void UIUpdateEventHandler(string arg1, string arg2);
     public static event UIUpdateEventHandler IDUpdated;
-    public Server() { }
 
+    public Server()
+    {
 
-    
+    }
 
     public static void SendMessageToApps(OscMessage message)
     {
@@ -38,24 +39,25 @@ public class Server
                 sender.Send(message);
 
             }
+
             catch (NullReferenceException e)
             {
                 Console.WriteLine("Null value skip");
             }
         }
     }
+
     public static void StartServer(object obj)
     {
         // The cabllback function
-        HandleOscPacket callback = delegate (OscPacket packet) {
+        HandleOscPacket callback = delegate (OscPacket packet)
+        {
             var messageReceived = (OscMessage)packet;
 
             try
             {
                 Console.WriteLine("Received a message!" + messageReceived.Address + "" +
                                   messageReceived.Arguments[0]);
-
-            
 
                 if (messageReceived.Address == "/avatar/change")
                 {
@@ -68,36 +70,32 @@ public class Server
                     Form1.ParamList.Clear();
                     Form1.listIndexParam = 0;
 
-                    OnUpdateID("av_id",avi_ID);
+                    OnUpdateID("av_id", avi_ID);
                 }
                 //IF debugging begin checking and adding to list
                 if (Form1.isdebug == true)
                 {
                     bool isfound = false;
                     //Loop through the list of objects updating parameters
-                   for(int i=0;i<Form1.parameter_list.Count;i++)
+                    for (int i = 0; i < Form1.parameter_list.Count; i++)
                     {
-                        if(messageReceived.Address == Form1.parameter_list[i].Address)
+                        if (messageReceived.Address == Form1.parameter_list[i].Address)
                         {
                             Form1.parameter_list[i].Arguments[0] = messageReceived.Arguments[0];
-                           
+
                             isfound = true;
                         }
-                       
                     }
-                   //Didn't find any case of address in the list
+
+                    //Didn't find any case of address in the list
                     if (isfound == false)
                     {
                         Form1.parameter_list.Add(messageReceived);
                         Form1.ParamList.Add(messageReceived.Address);
-                      
-                        
-                        
                     }
-
                 }
-
             }
+
             catch (NullReferenceException e)
             {
                 Console.WriteLine("Null");
@@ -110,8 +108,8 @@ public class Server
         Console.WriteLine("Server started!");
     }
 
-    public static void OnUpdateID(string op,string ID)
+    public static void OnUpdateID(string op, string ID)
     {
-        if (IDUpdated != null) IDUpdated(op,ID);
+        if (IDUpdated != null) IDUpdated(op, ID);
     }
 }

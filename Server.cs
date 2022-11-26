@@ -11,16 +11,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 public class Server
 {
-    public static TcpListener server = new TcpListener(IPAddress.Any, 9001);
-    public static TcpClient MainListenClient;
     public static bool ShutServer = false;
     public static UDPListener listener;
-    public delegate void UpdateAvatar(String ID);
-    public static Control control;
     public static string avi_ID;
-    public static OscMessage previousPacket;
-    // Events
-    public delegate void UIUpdateEventHandler(string arg1, string arg2);
+
+    // Events and Delegates
+    public delegate void UpdateAvatar(String ID);
+    public delegate void UIUpdateEventHandler(string arg1);
     public static event UIUpdateEventHandler IDUpdated;
 
     public Server()
@@ -63,34 +60,34 @@ public class Server
                 {
                     avi_ID = messageReceived.Arguments[0].ToString();
                     Console.WriteLine("New Avatar ID: " + messageReceived.Arguments[0]);
-                    previousPacket = messageReceived;
+                    
 
                     //New Avatar Reset Listbox
-                    Form1.parameter_list.Clear();
+                    Form1.ParamObjectList.Clear();
                     Form1.ParamList.Clear();
                     Form1.listIndexParam = 0;
 
-                    OnUpdateID("av_id", avi_ID);
+                    OnUpdateID("av_id");
                 }
-                //IF debugging begin checking and adding to list
+                //If debugging, begin checking and adding to list
                 if (Form1.isdebug == true)
                 {
                     bool isfound = false;
                     //Loop through the list of objects updating parameters
-                    for (int i = 0; i < Form1.parameter_list.Count; i++)
+                    for (int i = 0; i < Form1.ParamObjectList.Count; i++)
                     {
-                        if (messageReceived.Address == Form1.parameter_list[i].Address)
+                        if (messageReceived.Address == Form1.ParamObjectList[i].Address)
                         {
-                            Form1.parameter_list[i].Arguments[0] = messageReceived.Arguments[0];
+                            Form1.ParamObjectList[i].Arguments[0] = messageReceived.Arguments[0];
 
                             isfound = true;
                         }
                     }
 
-                    //Didn't find any case of address in the list
+                    //Didn't find any case of address in the list, create one
                     if (isfound == false)
                     {
-                        Form1.parameter_list.Add(messageReceived);
+                        Form1.ParamObjectList.Add(messageReceived);
                         Form1.ParamList.Add(messageReceived.Address);
                     }
                 }
@@ -98,7 +95,7 @@ public class Server
 
             catch (NullReferenceException e)
             {
-                Console.WriteLine("Null");
+                Console.WriteLine(e);
             }
 
             SendMessageToApps(messageReceived);
@@ -108,8 +105,8 @@ public class Server
         Console.WriteLine("Server started!");
     }
 
-    public static void OnUpdateID(string op, string ID)
+    public static void OnUpdateID(string ID)
     {
-        if (IDUpdated != null) IDUpdated(op, ID);
+        if (IDUpdated != null) IDUpdated(ID);
     }
 }

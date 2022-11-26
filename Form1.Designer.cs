@@ -39,7 +39,7 @@ namespace OSCHub
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Exit = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnAddApp = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -62,10 +62,8 @@ namespace OSCHub
             this.Label_ID = new System.Windows.Forms.Label();
             this.LblAvatarName = new System.Windows.Forms.Label();
             this.LblAvatarInfo = new System.Windows.Forms.Label();
-            this.btnRemoveApp = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel_param = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label_oscaddress = new System.Windows.Forms.Label();
             this.label_oscvalue = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -73,14 +71,17 @@ namespace OSCHub
             this.label6 = new System.Windows.Forms.Label();
             this.listbox_param = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnRemoveApp = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.panel_param.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -109,7 +110,7 @@ namespace OSCHub
             this.btnParam.TabIndex = 4;
             this.btnParam.Text = "Parameter Debug";
             this.btnParam.UseVisualStyleBackColor = true;
-            this.btnParam.Click += new System.EventHandler(this.button2_Click);
+            this.btnParam.Click += new System.EventHandler(this.btnDebug_Click);
             // 
             // panel3
             // 
@@ -131,7 +132,7 @@ namespace OSCHub
             this.btnDashboard.TabIndex = 2;
             this.btnDashboard.Text = "Home";
             this.btnDashboard.UseVisualStyleBackColor = true;
-            this.btnDashboard.Click += new System.EventHandler(this.btnParamDebug_Click);
+            this.btnDashboard.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // panel2
             // 
@@ -177,18 +178,18 @@ namespace OSCHub
             this.label3.TabIndex = 1;
             this.label3.Text = "OSC Settings";
             // 
-            // button1
+            // Exit
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(924, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 25);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.Exit.FlatAppearance.BorderSize = 0;
+            this.Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Exit.ForeColor = System.Drawing.Color.White;
+            this.Exit.Location = new System.Drawing.Point(924, 0);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(25, 25);
+            this.Exit.TabIndex = 3;
+            this.Exit.Text = "X";
+            this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panel5
             // 
@@ -456,40 +457,9 @@ namespace OSCHub
             this.LblAvatarInfo.Text = "Avatar Info";
             this.LblAvatarInfo.Click += new System.EventHandler(this.LblAvatarInfo_Click);
             // 
-            // btnRemoveApp
-            // 
-            this.btnRemoveApp.AutoSize = true;
-            this.btnRemoveApp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.btnRemoveApp.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
-            this.btnRemoveApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnRemoveApp.ForeColor = System.Drawing.Color.Black;
-            this.btnRemoveApp.Location = new System.Drawing.Point(553, 374);
-            this.btnRemoveApp.Name = "btnRemoveApp";
-            this.btnRemoveApp.Size = new System.Drawing.Size(29, 32);
-            this.btnRemoveApp.TabIndex = 14;
-            this.btnRemoveApp.Text = "-";
-            this.btnRemoveApp.UseVisualStyleBackColor = false;
-            this.btnRemoveApp.Click += new System.EventHandler(this.btnRemoveApp_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.AutoSize = true;
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Location = new System.Drawing.Point(553, 515);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(107, 32);
-            this.btnSave.TabIndex = 15;
-            this.btnSave.Text = "Save Apps";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // panel_param
             // 
+            this.panel_param.Controls.Add(this.button1);
             this.panel_param.Controls.Add(this.label_oscaddress);
             this.panel_param.Controls.Add(this.label_oscvalue);
             this.panel_param.Controls.Add(this.label9);
@@ -497,11 +467,24 @@ namespace OSCHub
             this.panel_param.Controls.Add(this.label6);
             this.panel_param.Controls.Add(this.listbox_param);
             this.panel_param.Controls.Add(this.label2);
-            this.panel_param.Location = new System.Drawing.Point(190, 0);
+            this.panel_param.Location = new System.Drawing.Point(188, 0);
             this.panel_param.Name = "panel_param";
             this.panel_param.Size = new System.Drawing.Size(761, 568);
             this.panel_param.TabIndex = 16;
             this.panel_param.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(733, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 25);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "X";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label_oscaddress
             // 
@@ -583,6 +566,38 @@ namespace OSCHub
             this.label2.Text = "Detected Parameters";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // btnRemoveApp
+            // 
+            this.btnRemoveApp.AutoSize = true;
+            this.btnRemoveApp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.btnRemoveApp.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
+            this.btnRemoveApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRemoveApp.ForeColor = System.Drawing.Color.Black;
+            this.btnRemoveApp.Location = new System.Drawing.Point(553, 374);
+            this.btnRemoveApp.Name = "btnRemoveApp";
+            this.btnRemoveApp.Size = new System.Drawing.Size(29, 32);
+            this.btnRemoveApp.TabIndex = 14;
+            this.btnRemoveApp.Text = "-";
+            this.btnRemoveApp.UseVisualStyleBackColor = false;
+            this.btnRemoveApp.Click += new System.EventHandler(this.btnRemoveApp_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.AutoSize = true;
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSave.ForeColor = System.Drawing.Color.Black;
+            this.btnSave.Location = new System.Drawing.Point(553, 515);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(107, 32);
+            this.btnSave.TabIndex = 15;
+            this.btnSave.Text = "Save Apps";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -597,7 +612,7 @@ namespace OSCHub
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Exit);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -615,9 +630,9 @@ namespace OSCHub
             this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.panel_param.ResumeLayout(false);
             this.panel_param.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -632,7 +647,7 @@ namespace OSCHub
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label LblAppName;
         private System.Windows.Forms.Label LblAppPort;
@@ -667,6 +682,7 @@ namespace OSCHub
         private System.Windows.Forms.Label label_oscvalue;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button1;
     }
 }
 

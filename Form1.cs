@@ -15,58 +15,36 @@ namespace OSCHub
 {
     public partial class Form1 : Form
     {
+        //There has to be a better way eww
         public static List<String> AppsList = new List<String>();
         public static List<AppObject> AppsObjectList = new List<AppObject>();
         public static List<String> ParamList = new List<String>();
+        public static List<OscMessage> ParamObjectList = new List<OscMessage>();
+
         BindingSource bsApps = new BindingSource();
         public static BindingSource bsParams = new BindingSource();
+
+        
         public int listIndex = 0;
         public static int listIndexParam = 0;
         bool isrun = false;
         public static bool isdebug = false;
         public static Thread serverThread;
-        public static CancellationTokenSource ct = new CancellationTokenSource();
-        public static List<OscMessage> parameter_list = new List<OscMessage>();
+       
+        
 
-        //Window dragging winapi voodoo
+        //WINAPI Vars
         private const int WM_NCHITTEST = 0x84;
         private const int HTCLIENT = 0x1;
         private const int HTCAPTION = 0x2;
 
-        //Window dragging winapi voodoo
+        //Window Dragging WINAPI Voodoo
         protected override void WndProc(ref Message message)
         {
             base.WndProc(ref message);
 
             if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
                 message.Result = (IntPtr)HTCAPTION;
-        }
-
-        public void DebugRefresh()
-        {
-            while (isdebug == true)
-            {
-                if (parameter_list.Count > 0)
-                {
-                    label_oscaddress.BeginInvoke((MethodInvoker)delegate ()
-                    {
-                        label_oscaddress.Text = parameter_list[listIndexParam].Address;
-                    });
-
-                    label_oscvalue.BeginInvoke((MethodInvoker)delegate ()
-                    {
-                        label_oscvalue.Text = parameter_list[listIndexParam].Arguments[0].ToString();
-                    });
-
-                    listbox_param.BeginInvoke((MethodInvoker)delegate ()
-                    {
-                        listbox_param.DataSource = bsParams;
-                        bsParams.ResetBindings(false);
-                    });
-
-                    Thread.Sleep(2000);
-                }
-            }
         }
 
         public Label Label8
@@ -89,6 +67,35 @@ namespace OSCHub
             set
             {
                 this.Label_ID.Text = value;
+            }
+        }
+
+
+
+        public void DebugRefresh()
+        {
+            while (isdebug == true)
+            {
+                if (ParamObjectList.Count > 0)
+                {
+                    label_oscaddress.BeginInvoke((MethodInvoker)delegate ()
+                    {
+                        label_oscaddress.Text = ParamObjectList[listIndexParam].Address;
+                    });
+
+                    label_oscvalue.BeginInvoke((MethodInvoker)delegate ()
+                    {
+                        label_oscvalue.Text = ParamObjectList[listIndexParam].Arguments[0].ToString();
+                    });
+
+                    listbox_param.BeginInvoke((MethodInvoker)delegate ()
+                    {
+                        listbox_param.DataSource = bsParams;
+                        bsParams.ResetBindings(false);
+                    });
+
+                    Thread.Sleep(2000);
+                }
             }
         }
 
@@ -118,17 +125,13 @@ namespace OSCHub
             }
         }
 
-        public void UpdateUI(String op, String ID)
+        //Update Avatar ID on UI Thread
+        public void UpdateUI(String ID)
         {
-            Console.WriteLine("Event called");
-
-            if (op == "av_id")
+            Label_ID.BeginInvoke((MethodInvoker)delegate ()
             {
-                Label_ID.BeginInvoke((MethodInvoker)delegate ()
-                {
-                    Label_ID.Text = ID;
-                });
-            }
+                Label_ID.Text = ID;
+            });
         }
 
         public Form1()
@@ -171,9 +174,18 @@ namespace OSCHub
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        //Exit button
+        private void btnClose_Click(object sender, EventArgs e)
         {
-
+            if(InvokeRequired)
+            {
+                BeginInvoke((MethodInvoker)delegate ()
+                {
+                    this.Close();
+                });
+            }
+            this.Close();
+           
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -196,7 +208,7 @@ namespace OSCHub
 
                 serverThread = new Thread(Server.StartServer);
 
-                serverThread.Start(ct);
+                serverThread.Start();
             }
 
             else
@@ -334,14 +346,14 @@ namespace OSCHub
         }
 
         //Home FIX THIS
-        private void btnParamDebug_Click(object sender, EventArgs e)
+        private void btnHome_Click(object sender, EventArgs e)
         {
             panel_param.Hide();
             isdebug = false;
         }
 
         //Parameter Debug
-        private void button2_Click(object sender, EventArgs e)
+        private void btnDebug_Click(object sender, EventArgs e)
         {
             panel_param.Show();
             isdebug = true;
@@ -375,6 +387,11 @@ namespace OSCHub
             //Refresh Parameters
             listbox_param.DataSource = bsParams;
             bsParams.ResetBindings(true);
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+
         }
     }
 

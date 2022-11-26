@@ -20,3 +20,39 @@ OSCHub also includes an OSC debug feature for avatar parameters. Simply start th
 # Installation
 
 Simply find the releases tab on the right side of the repository, navigate to the page and download the latest version .zip file. Once downloaded, extract the file into a folder of your choosing and run the application.
+
+
+# Setting up your applications
+
+Simply start the program and find the "New OSC App" Panel in the top right.
+
+1. Enter the custom friendly name of the application, it can be anything you would like.
+2. Enter a new IP address if the application resides on another device on your network, or leave default if it runs from the same computer you are playing VRChat on.
+3. Enter a port number for the application. Typically ports will be anything from 9002 onwards.
+4. Press the add button and see that the app now populates in the connected apps list. This list will save even if you close the application.
+5. You can now start the server and OSCHub will forward messages to the newly configured application.
+
+# Example configuration for Facetracking + additional apps
+
+1. Create a shortcut for VRCFacetracking, select properties and add the following to the end of target "--osc=9000:127.0.0.1:9002" This will run VRCFT on port 9002
+
+![image](https://user-images.githubusercontent.com/102766533/204104356-d62c9e52-6d7a-493f-bd8d-28e73b95a5cf.png)
+
+2. Open OSCHub and follow the App adding instructions as seen in the previous section. Fill in name, IP, and the port 9002, press add
+
+![image](https://user-images.githubusercontent.com/102766533/204104446-527e6796-d8fa-4149-98d2-0922c7aa23c8.png)
+
+3. Continue to add any additional apps as necessary
+
+![image](https://user-images.githubusercontent.com/102766533/204104492-e8e8b0ef-aded-415c-8273-4c38a55c8c40.png)
+
+
+
+
+
+
+
+
+
+
+

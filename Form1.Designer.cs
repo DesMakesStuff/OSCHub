@@ -191,7 +191,7 @@ namespace OSCHub
             this.panel_param.Controls.Add(this.label6);
             this.panel_param.Controls.Add(this.listbox_param);
             this.panel_param.Controls.Add(this.label2);
-            this.panel_param.Location = new System.Drawing.Point(21, 229);
+            this.panel_param.Location = new System.Drawing.Point(188, 0);
             this.panel_param.Name = "panel_param";
             this.panel_param.Size = new System.Drawing.Size(761, 568);
             this.panel_param.TabIndex = 16;
@@ -533,7 +533,6 @@ namespace OSCHub
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.panel_param);
             this.panel7.Controls.Add(this.Label_SvrStatus);
             this.panel7.Controls.Add(this.label4);
             this.panel7.Controls.Add(this.label5);
@@ -604,6 +603,7 @@ namespace OSCHub
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(951, 577);
+            this.Controls.Add(this.panel_param);
             this.Controls.Add(this.btnRemoveApp);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.lblConnectedApps);
